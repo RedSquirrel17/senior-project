@@ -1,0 +1,10 @@
+test\lcd.o: ..\..\..\patrick\lcd.c
+test\lcd.o: ..\..\..\patrick\lcd.h
+test\lcd.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+test\lcd.o: ..\..\..\patrick\stm32l476xx.h
+test\lcd.o: ../Drivers/CMSIS/Include/core_cm4.h
+test\lcd.o: ../Drivers/CMSIS/Include/core_cmInstr.h
+test\lcd.o: ../Drivers/CMSIS/Include/cmsis_armcc.h
+test\lcd.o: ../Drivers/CMSIS/Include/core_cmFunc.h
+test\lcd.o: ../Drivers/CMSIS/Include/core_cmSimd.h
+test\lcd.o: ../Drivers/CMSIS/Device/ST/STM32L4xx/Include/system_stm32l4xx.h
