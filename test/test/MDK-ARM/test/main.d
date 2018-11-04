@@ -45,3 +45,4 @@ test\main.o: ../Drivers/CMSIS/Include/arm_math.h
 test\main.o: ../Drivers/CMSIS/Include/core_cm4.h
 test\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 test\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
+test\main.o: ../Inc/lcd.h

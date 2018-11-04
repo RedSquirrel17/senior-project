@@ -55,7 +55,7 @@
 /* USER CODE BEGIN Includes */
 #define ARM_MATH_CM4
 #include "arm_math.h"
-//#include "lcd.h"
+#include "lcd.h"
 
 /* USER CODE END Includes */
 
@@ -133,7 +133,7 @@ int main(void)
   MX_GPIO_Init();
   MX_I2C1_Init();
   MX_I2C2_Init();
-  MX_LCD_Init();
+  //MX_LCD_Init();
   MX_SAI1_Init();
   MX_SPI2_Init();
   MX_USART2_UART_Init();
@@ -141,7 +141,7 @@ int main(void)
   MX_ADC1_Init();
   /* USER CODE BEGIN 2 */
 	HAL_ADC_Start(&hadc1);
-   //LCD_Initialization();
+  LCD_Initialization();
 	/* USER CODE END 2 */
 
   /* Infinite loop */
@@ -156,36 +156,138 @@ int main(void)
 	
 	measval = 0.48828125 * adcval;
 		
-	//uint8_t digit;
-    //char i;
-    //for(i = 0; i < 4; i++){
-        //digit = measval / 10;
-        //LCD_WriteChar(&digit, 0, 0, 5);
-        // num /= 10;
-    //}
-//    digit = 'm';
-//    LCD_WriteChar(&digit, 0, 0, 4);
-//    digit = 'V';
-//    LCD_WriteChar(&digit, 0, 0, 5);
+	uint8_t digit;
 		
-	if((measval < setval+2) && (measval > setval-2)) {  		// within threshold
+		if((setval / 10) == 0) {
+			digit = '0';
+		}
+		else if((setval / 10) == 1) {
+			digit = '1';
+		}
+		else if((setval / 10) == 2) {
+			digit = '2';
+		}
+		else if((setval / 10) == 3) {
+			digit = '3';
+		}
+		else if((setval / 10) == 4) {
+			digit = '4';
+		}
+		else if((setval / 10) == 5) {
+			digit = '5';
+		}
+    LCD_WriteChar(&digit, 0, 0, 0);
+		
+		
+	uint8_t digit1;		
+		
+		if((setval % 10) == 0) {
+			digit1 = '0';
+		}
+		else if((setval % 10) == 1) {
+			digit1 = '1';
+		}
+		else if((setval % 10) == 2) {
+			digit1 = '2';
+		}
+		else if((setval % 10) == 3) {
+			digit1 = '3';
+		}
+		else if((setval % 10) == 4) {
+			digit1 = '4';
+		}
+		else if((setval % 10) == 5) {
+			digit1 = '5';
+		}
+		else if((setval % 10) == 6) {
+			digit1 = '6';
+		}
+		else if((setval % 10) == 7) {
+			digit1 = '7';
+		}
+		else if((setval % 10) == 8) {
+			digit1 = '8';
+		}
+		else if((setval % 10) == 9) {
+			digit1 = '9';
+		}
+    LCD_WriteChar(&digit1, 0, 0, 1);
+		
+		
+		uint8_t digit2;
+		if((adcval / 10) == 0) {
+			digit2 = '0';
+		}
+		else if((adcval / 10) == 1) {
+			digit2 = '1';
+		}
+		else if((adcval / 10) == 2) {
+			digit2 = '2';
+		}
+		else if((adcval / 10) == 3) {
+			digit2 = '3';
+		}
+		else if((adcval/ 10) == 4) {
+			digit2 = '4';
+		}
+		else if((adcval / 10) == 5) {
+			digit2 = '5';
+		}
+    LCD_WriteChar(&digit2, 0, 0, 4);
+		
+		
+		
+		uint8_t digit3;
+		if((adcval % 10) == 0) {
+			digit3 = '0';
+		}
+		else if((adcval % 10) == 1) {
+			digit3 = '1';
+		}
+		else if((adcval % 10) == 2) {
+			digit3 = '2';
+		}
+		else if((adcval % 10) == 3) {
+			digit3 = '3';
+		}
+		else if((adcval % 10) == 4) {
+			digit3 = '4';
+		}
+		else if((adcval % 10) == 5) {
+			digit3 = '5';
+		}
+		else if((adcval % 10) == 6) {
+			digit3 = '6';
+		}
+		else if((adcval % 10) == 7) {
+			digit3 = '7';
+		}
+		else if((adcval % 10) == 8) {
+			digit3 = '8';
+		}
+		else if((adcval % 10) == 9) {
+			digit3 = '9';
+		}
+    LCD_WriteChar(&digit3, 0, 0, 5);
+		
+	if((measval < setval+1) && (measval > setval-1)) {  		// within threshold
 	HAL_GPIO_WritePin(GPIOE, GPIO_PIN_14, GPIO_PIN_RESET);
 	HAL_GPIO_WritePin(GPIOE, GPIO_PIN_15, GPIO_PIN_RESET);
 	}		
-	else if(measval > setval+2) {
+	else if(measval > setval+1) {
 	HAL_GPIO_WritePin(GPIOE, GPIO_PIN_14, GPIO_PIN_SET);	// cool
 	HAL_GPIO_WritePin(GPIOE, GPIO_PIN_15, GPIO_PIN_RESET);
 	}
-	else if(measval < setval-2) {
+	else if(measval < setval-1) {
 	HAL_GPIO_WritePin(GPIOE, GPIO_PIN_14, GPIO_PIN_RESET);	// heat
 	HAL_GPIO_WritePin(GPIOE, GPIO_PIN_15, GPIO_PIN_SET);
 	}
 	
-	HAL_LCD_Write(&hlcd,LCD_RAM_REGISTER0, 0xFFFFFFFF,0x20000002);
+	//HAL_LCD_Write(&hlcd,LCD_RAM_REGISTER0, 0xFFFFFFFF,0x20000002);
 	//HAL_LCD_Write(&hlcd,LCD_RAM_REGISTER1,LCD_RAM_SEGMENT_DATA_Msk,0xFFFFFFFF);
 	//HAL_LCD_Write(&hlcd,LCD_RAM_REGISTER2,0xFFFFFFFF,0xFFFFFFFF);
 	//HAL_LCD_Write(&hlcd,LCD_RAM_REGISTER3,0xFFFFFFFF,0xFFFFFFFF);
-	HAL_LCD_UpdateDisplayRequest(&hlcd);
+	//HAL_LCD_UpdateDisplayRequest(&hlcd);
   /* USER CODE END WHILE */
     MX_USB_HOST_Process();
 
