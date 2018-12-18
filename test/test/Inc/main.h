@@ -101,10 +101,6 @@
 #define AUDIO_CLK_GPIO_Port GPIOE
 #define QSPI_CS_Pin GPIO_PIN_11
 #define QSPI_CS_GPIO_Port GPIOE
-#define QSPI_D0_Pin GPIO_PIN_12
-#define QSPI_D0_GPIO_Port GPIOE
-#define QSPI_D1_Pin GPIO_PIN_13
-#define QSPI_D1_GPIO_Port GPIOE
 #define MFX_I2C_SLC_Pin GPIO_PIN_10
 #define MFX_I2C_SLC_GPIO_Port GPIOB
 #define MFX_I2C_SDA_Pin GPIO_PIN_11
@@ -177,8 +173,6 @@
 #define SEG11_GPIO_Port GPIOB
 #define SEG12_Pin GPIO_PIN_5
 #define SEG12_GPIO_Port GPIOB
-#define I2C1_SCL_Pin GPIO_PIN_6
-#define I2C1_SCL_GPIO_Port GPIOB
 #define I2C1_SDA_Pin GPIO_PIN_7
 #define I2C1_SDA_GPIO_Port GPIOB
 #define GYRO_INT2_Pin GPIO_PIN_8
